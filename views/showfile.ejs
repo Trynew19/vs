@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sasta vs code</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="../stylesheets/style.css">
+</head>
+<body>
+  <div id="main">
+    <div id="left">
+      <div id="folder">
+        <h4>Some Folder</h4>
+        <div id="icons">
+          <i  id="fileic" class= "ri-file-2-line"></i>
+          <i  id="folderic"  class="ri-folder-add-line"></i>
+            <a href="/"> <i class="ri-restart-line"></i></a>
+          <i class="ri-file-copy-line"></i>
+
+        </div>
+      </div>
+      <div class="form createFile">
+        <form action="/fileCreate">
+        <input type="text" name="filename" placeholder="filename">
+
+        </form>
+      </div>
+      <div class="form createFolder">
+        <form action="/folderCreate">
+        <input type="text" name="foldername" placeholder="foldername">
+
+        </form>
+      </div>
+      
+      <div id="files">
+        
+          <% data.forEach((dirent)=>{ %>
+            <div id="file">
+              <a href="/files/<%= dirent.filename  %>">
+            <% if (dirent.isDirectory()) { %>
+              <i class="ri-folder-fill"></i>
+           <% }  else { %>
+            <i class="ri-file-2-line"></i>
+           <% } %>
+               <%= dirent.name  %>
+
+           </a> 
+
+               <div id="ficon">
+                <i class="ri-pencil-line"></i>
+                <i class="ri-delete-bin-5-line"></i>
+              
+              </div>
+
+              </div>
+              
+
+          <% }) %>
+
+      </div>
+     
+    </div>
+    
+    <div id="right">
+      <div id="rheader">
+        <div class="opend">
+          <%= filename  %>
+          <i class="ri-close-line"></i>
+        </div>
+        <form id="content" action="">
+         <textarea name="filename" > <%= dataa %></textarea>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+
+    //file aur folder banane ke liye ak sath chalane wala code
+
+    function donooffkaro(){
+      document.querySelectorAll(".form")
+      .forEach(function(form){
+        form.style.display = "none"
+      })
+
+    }
+
+
+
+    var flagfile = 0;
+    var flagfolder = 0;
+
+     var crefile = document.querySelector("#fileic");
+    
+     crefile.addEventListener("click",()=>{
+      donooffkaro();
+
+      if(flagfile == 0){
+        document.querySelector(".createFile").style.display = "initial";
+        flag = 1
+      }else{
+        document.querySelector(".createFile").style.display = "none";
+         flag =0; 
+
+      }
+     })
+     ///Folder banane ke liye
+
+     var crefolder = document.querySelector("#folderic");
+    
+     crefolder.addEventListener("click",()=>{
+      donooffkaro();
+
+      if(flagfolder == 0){
+        document.querySelector(".createFolder").style.display = "initial";
+        flag = 1
+      }else{
+        document.querySelector(".createFolder").style.display = "none";
+         flag =0; 
+
+      }
+     })
+
+  </script>
+</body>
+</html>
